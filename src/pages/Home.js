@@ -1,9 +1,20 @@
 import React from 'react'
+import Hero from "../components/Hero";
+import Banner from "../components/Banner";
+import Services from "../components/Services";
+import {Link} from "react-router-dom"
 
 export default function home() {
     return (
-        <div>
-            Welcome to Home page
-        </div>
+        <>
+               <Hero hero="defaultHero">
+                 <Banner title="luxious rooms" subtitle="delux rooms starting at $299">
+                     <Link to="/rooms/"><button className="btn-primary">Our Roooms</button></Link>
+                 </Banner>
+               </Hero>
+               <Services>
+                   
+               </Services>
+        </>
     )
 }

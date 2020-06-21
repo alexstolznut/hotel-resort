@@ -8,7 +8,9 @@ import SingleRoom from "./pages/SingleRoom";
 import Error from "./pages/Error";
 
 //Components
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+
 
 import {Route, Switch} from "react-router-dom";
 
