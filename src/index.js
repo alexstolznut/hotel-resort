@@ -7,11 +7,15 @@ import * as serviceWorker from './serviceWorker';
 
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
+import { RoomProvider } from "./context";
+
 ReactDOM.render(
   <React.StrictMode>
+    <RoomProvider>
     <Router>
       <App />
     </Router>
+    </RoomProvider>
    
   </React.StrictMode>,
   document.getElementById('root')
