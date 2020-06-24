@@ -1,29 +1,39 @@
 import React, { Component } from 'react'
 import {RoomContext} from "../context"
 import data from "../data";
+import LoadingComp from "./Loading";
+import Title from "./Title";
+import {Link} from "react-router-dom";
+import Rooms from "./Rooms"
 
 export default class FeaturedRooms extends Component {
     static contextType = RoomContext;
+    
     render() {
-        const value = this.context;
-        console.log(typeof data)
+        let {rooms, featuredRooms, sortedRooms, loading} = this.context;
+        console.log(rooms, featuredRooms)
 
-        const valueArray = Object.keys(value);
-        console.log(valueArray);
-  
-        return (
-            <div className="featured-rooms-center">
-              {value.map((item, key) => {
-               return <div style={{backgroundColor:"grey", borderRadius:"0 0 4px 4px"}}>
-                  <div className="featured-rooms" 
-                        key={key} 
-                        style={{backgroundImage: `url(${item.fields.images[0].fields.file.url})`, backgroundSize:'cover'}}>
-                    
-                        </div>
-                        <h6> {item.fields.name}</h6>
-                    </div>
-                 })}
+        let roomsComp = rooms.map((item, key)=>{
+            return <div key={key}>
+                <h4>hi</h4>
             </div>
+        })
+
+        rooms = featuredRooms.map(item => {
+        
+            return <Rooms id={item.id} rooms={item}/>
+        })
+
+        
+        
+        return (
+            
+            <section className="featured-rooms">
+                <Title title="featured rooms"></Title>
+                <div className="featured-rooms-center">
+                {loading ? <LoadingComp/> : rooms}
+                </div>    
+            </section>
         )
     }
 }
