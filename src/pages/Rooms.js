@@ -4,6 +4,8 @@ import Banner from "../components/Banner";
 
 import { Link, useParams } from "react-router-dom";
 
+import RoomsContainer from "../components/RoomContainer"
+
 
 
 export default function Rooms() {
@@ -19,6 +21,7 @@ export default function Rooms() {
                     </Link>
                 </Banner>
             </Hero>
+            <RoomsContainer></RoomsContainer>
             
         </div>
     )

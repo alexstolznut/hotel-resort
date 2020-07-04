@@ -9,7 +9,12 @@ export default function SingleRoom({room}) {
                    return <img src={images} alt="" key={images.indexOf({images})}></img>
                 })}
             </div>
-            <div className="room-info"></div>
+            <div className="room-info">
+                <h3>Info</h3>
+                {room.map(room=>{
+                    
+                })}
+            </div>
             <div className="room-extras">
                 <h3>Extras</h3>
                 <ul>
