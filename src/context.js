@@ -67,10 +67,24 @@ class RoomProvider extends Component {
         const room = tempRooms.find(room => room.slug===slug);
         return room;
     }
+
+    handleChange = event => {
+        const type = event.target.type;
+        const name = event.target.name;
+        const value = event.target.value;
+        console.log(`type: ${type}
+        name: ${name}
+        value: ${value}`)
+        this.setState({
+            [name]: value 
+        });
+
+        console.log(this.state.type);
+    }
     
     render() {
         return (
-            <RoomContext.Provider value={{...this.state, getRoom:this.getRoom}}>
+            <RoomContext.Provider value={{...this.state, getRoom:this.getRoom, handleChange: this.handleChange}}>
                 {this.props.children}
             </RoomContext.Provider>
         )
