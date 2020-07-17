@@ -32,6 +32,7 @@ export default function RoomsFilter() {
     } = context
 
     console.log(getUnique(rooms, 'type'))
+    let uniquePrices = getUnique(rooms, 'price')
 
     const uniqueOptions = () =>{
         let tempArray = rooms.map(item=>item.type)
@@ -53,7 +54,7 @@ export default function RoomsFilter() {
        <section className="filter-container">
            <Title title="search rooms"></Title>
            <form className="filter-form">
-            {/*select tyoe*/}
+            {/*select type*/}
             <div className="form-group">
                    <label htmlFor="type">room type</label>
                    <select name="type" id="type" value={type} className="form-control" onChange={handleChange}>
@@ -64,7 +65,25 @@ export default function RoomsFilter() {
                         }
                    </select>
                </div>
-            {/*end select tyoe*/}
+            {/*end select type*/}
+            {/*select guests*/}
+            <div className="form-group">
+                   <label htmlFor="capacity">guests</label>
+                   <select name="capacity" id="capacity" value={capacity} className="form-control" onChange={handleChange} type="number">
+                        {[...getUnique(rooms, 'capacity')]
+                        .map((item, index)=>{
+                            return <option value={item} key={index}>{item}</option>
+                            })
+                        }
+                   </select>
+               </div>
+            {/*end select guests*/}
+              {/*select price*/}
+              <div className="form-group">
+                   <label htmlFor="price">price: {price}</label>
+                   <input  type="range" min={Math.min(...uniquePrices)} max={Math.max(...uniquePrices)} name="price" id="price" value={price} className="form-control" onChange={handleChange}/>
+               </div>
+            {/*end select price*/}
            </form>
        </section>
     )

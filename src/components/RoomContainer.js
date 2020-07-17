@@ -6,7 +6,6 @@ import Loading from "../components/Loading";
 
 function RoomContainer({context}){
     const {loading, sortedRooms, rooms} = context;
-    console.log(sortedRooms)
     return (
             <div>
                 {loading ? 
