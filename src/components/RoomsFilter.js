@@ -80,10 +80,32 @@ export default function RoomsFilter() {
             {/*end select guests*/}
               {/*select price*/}
               <div className="form-group">
-                   <label htmlFor="price">price: {price}</label>
-                   <input  type="range" min={Math.min(...uniquePrices)} max={Math.max(...uniquePrices)} name="price" id="price" value={price} className="form-control" onChange={handleChange}/>
+                   <label htmlFor="price">room price: $ {price}</label>
+                   <input  type="range" min={minPrice} max={maxPrice} name="price" id="price" value={price} className="form-control" onChange={handleChange}/>
                </div>
-            {/*end select price*/}
+            {/*size*/}
+            <div className="form-group">
+                   <label htmlFor="minSize">Room Size</label>
+                   <div className="size-inputs">
+                        <input  type="number"  name="minSize" id="minSize" value={minSize} min="0" className="size-input" onChange={handleChange}/>
+                        <input  type="number"  name="maxSize" id="maxSize" value={maxSize} className="size-input" onChange={handleChange}/>
+                   </div>
+
+               </div>
+            {/*end size*/}
+             {/*extras*/}
+             <div className="form-group">
+                 <div className="single-extra">
+                    <input type="checkbox" name="pets" id="pets" onChange={handleChange} checked={pets}></input>
+                    <label htmlFor="pets">pets</label>
+                   </div>
+                   <div className="single-extra">
+                    <input type="checkbox" name="breakfast" id="breakfast" onChange={handleChange} checked={breakfast}></input>
+                    <label htmlFor="breakfast" className="single-extra">breakfast</label>
+                   </div>
+
+               </div>
+            {/*end extras*/}
            </form>
        </section>
     )

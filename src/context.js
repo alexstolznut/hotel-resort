@@ -11,10 +11,11 @@ class RoomProvider extends Component {
         featuredRooms:[],
         loading: true,
         type: 'all',
-        capacity: 2,
+        capacity: 1,
         price: 400, 
         minPrice: 0,
         maxPrice: 0,
+        size: 1000,
         minSize: 0,
         maxSize: 0,
         breakfast: false,
@@ -31,13 +32,13 @@ class RoomProvider extends Component {
         this.setState({
             rooms,
             featuredRooms,
-            sortedRooms: [],
+            sortedRooms: rooms,
             loading: false,
             price: maxPrice,
             maxPrice: maxPrice,
             size: maxSize,
             maxSize: maxSize
-        }, this.sortedRooms)
+        })
         // console.log(sortedRooms)
         console.log(featuredRooms)
     }
@@ -55,13 +56,33 @@ class RoomProvider extends Component {
     }
 
     sortedRooms() {
-        let {price, pets, capacity, size, breakfast, type} = this.state;
+        let {price, pets, capacity, size, breakfast, type, minSize, maxSize} = this.state;
         let tempRooms = [...this.state.rooms]
         capacity = parseInt(capacity);
+        console.log(minSize);
+        price = parseInt(price);
+        minSize = parseInt(minSize);
+        maxSize = parseInt(maxSize);
+
+        if(minSize = "NaN"){
+            minSize = 0
+        }
+       
+        // if(minSize === "" || minSize === NaN || minSize === null || minSize < 0) {
+        //     minSize = 0;
+        //     console.log(minSize)
+        // }
         if( type != 'all') {
-            tempRooms = tempRooms.filter(items => {return items.price <= price && items.pets === pets && items.capacity >= capacity && items.size <= size && items.breakfast === breakfast && items.type === type} );
+            tempRooms = tempRooms.filter(items => items.type === type && items.price <= price && items.capacity >= capacity && items.size >= minSize && items.size <= maxSize);
         } else {
-       tempRooms = tempRooms.filter(items =>  items.price <= price && items.pets === pets && items.capacity >= capacity && items.size <= size && items.breakfast === breakfast );
+            tempRooms = tempRooms.filter(items =>  items.price <= price &&  items.capacity >= capacity && items.size <= maxSize && items.size >= minSize);
+        }
+        if (breakfast){
+            tempRooms = tempRooms.filter(item => item.breakfast === true)
+        }
+
+        if (pets){
+            tempRooms = tempRooms.filter(item => item.pets === true)
         }
         tempRooms.map(items=> parseInt(items.capacity))
         this.setState({
@@ -82,7 +103,8 @@ class RoomProvider extends Component {
     handleChange = event => {
         const target = event.target;
         const name = event.target.name;
-        const value =  event.type === 'checkbox' ? target.checked : event.target.value;
+        const value =  target.type === 'checkbox' ? target.checked : event.target.value;
+        console.log(target.checked);
         this.setState({
             [name]: value 
         }, this.sortedRooms);
