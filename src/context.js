@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import items from './data';
+import Client from './contentful'
 const RoomContext = React.createContext();
+
+
+ 
 //
-console.log(typeof items)
+
 class RoomProvider extends Component {
 
     state = {
@@ -23,10 +26,15 @@ class RoomProvider extends Component {
 
     };
 
-    componentDidMount(){
-        let rooms = this.formatData(items)
-        // let sortedRooms = this.formatData(this.sortedRooms())
-        let featuredRooms = rooms.filter(rooms=>rooms.featured==true);
+    getData = async () =>{
+
+        try {
+            let response = await Client.getEntries({
+                content_type: 'hotelRooms',
+                order: 'sys.createdAt'
+            });
+            let rooms = this.formatData(response.items)
+            let featuredRooms = rooms.filter(rooms=>rooms.featured==true);
         let maxPrice = Math.max(...rooms.map(item=>item.price));
         let maxSize = Math.max(...rooms.map(item=>item.size));
         this.setState({
@@ -39,8 +47,36 @@ class RoomProvider extends Component {
             size: maxSize,
             maxSize: maxSize
         })
-        // console.log(sortedRooms)
-        console.log(featuredRooms)
+
+        } catch (error) {
+            console.log(error)
+        }
+    //     let rooms;
+    //     Client.getEntries({
+    //         content_type: "hotelRooms"
+    //     }).then(response => rooms = this.formatData(response.items)).then(reponse=>{
+    //     // let sortedRooms = this.formatData(this.sortedRooms())
+    //     let featuredRooms = rooms.filter(rooms=>rooms.featured==true);
+    //     let maxPrice = Math.max(...rooms.map(item=>item.price));
+    //     let maxSize = Math.max(...rooms.map(item=>item.size));
+    //     this.setState({
+    //         rooms,
+    //         featuredRooms,
+    //         sortedRooms: rooms,
+    //         loading: false,
+    //         price: maxPrice,
+    //         maxPrice: maxPrice,
+    //         size: maxSize,
+    //         maxSize: maxSize
+    //     })
+    //     // console.log(sortedRooms)
+    //     console.log(featuredRooms)
+    // });
+    }
+
+
+    componentDidMount(){
+       this.getData();
     }
 
 

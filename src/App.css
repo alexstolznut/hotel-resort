@@ -23,6 +23,12 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.4;
 }
+html, body {
+  overflow-x: hidden;
+}
+body {
+  position: relative
+}
 h1 {
   font-size: 3em;
   line-height: 1;

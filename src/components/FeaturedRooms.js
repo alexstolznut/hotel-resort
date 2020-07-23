@@ -12,9 +12,9 @@ export default class FeaturedRooms extends Component {
     render() {
         let {rooms, featuredRooms, sortedRooms, loading} = this.context;
 
-        rooms = featuredRooms.map(item => {
+        rooms = featuredRooms.map((item, index) => {
         
-            return <Rooms id={item.id} rooms={item}/>
+            return <Rooms key={index} id={index} rooms={item}/>
         })
 
         

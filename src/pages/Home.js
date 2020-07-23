@@ -13,9 +13,7 @@ export default function home() {
                      <Link to="/rooms/"><button className="btn-primary">Our Roooms</button></Link>
                  </Banner>
                </Hero>
-               <Services>
-                   
-               </Services>
+               <Services/>
                <FeaturedRooms></FeaturedRooms>
              
         </>
