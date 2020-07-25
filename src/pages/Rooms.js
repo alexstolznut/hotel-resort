@@ -2,7 +2,7 @@ import React from 'react'
 import Hero from "../components/Hero";
 import Banner from "../components/Banner";
 
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import RoomsContainer from "../components/RoomContainer"
 
