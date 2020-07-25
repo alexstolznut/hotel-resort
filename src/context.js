@@ -34,7 +34,7 @@ class RoomProvider extends Component {
                 order: 'sys.createdAt'
             });
             let rooms = this.formatData(response.items)
-            let featuredRooms = rooms.filter(rooms=>rooms.featured==true);
+            let featuredRooms = rooms.filter(rooms=>rooms.featured===true);
         let maxPrice = Math.max(...rooms.map(item=>item.price));
         let maxSize = Math.max(...rooms.map(item=>item.size));
         this.setState({
@@ -92,7 +92,7 @@ class RoomProvider extends Component {
     }
 
     sortedRooms() {
-        let {price, pets, capacity, size, breakfast, type, minSize, maxSize} = this.state;
+        let {price, pets, capacity, breakfast, type, minSize, maxSize} = this.state;
         let tempRooms = [...this.state.rooms]
         capacity = parseInt(capacity);
         console.log(minSize);
@@ -100,7 +100,7 @@ class RoomProvider extends Component {
         minSize = parseInt(minSize);
         maxSize = parseInt(maxSize);
 
-        if(minSize = "NaN"){
+        if(minSize == "NaN"){
             minSize = 0
         }
        
@@ -108,7 +108,7 @@ class RoomProvider extends Component {
         //     minSize = 0;
         //     console.log(minSize)
         // }
-        if( type != 'all') {
+        if( type !== 'all') {
             tempRooms = tempRooms.filter(items => items.type === type && items.price <= price && items.capacity >= capacity && items.size >= minSize && items.size <= maxSize);
         } else {
             tempRooms = tempRooms.filter(items =>  items.price <= price &&  items.capacity >= capacity && items.size <= maxSize && items.size >= minSize);

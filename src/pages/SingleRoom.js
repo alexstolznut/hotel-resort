@@ -1,11 +1,9 @@
-import React, { useContext, Component } from 'react'
+import React, { Component } from 'react'
 import defaultBackground from "../images/room-1.jpeg";
-import Hero from "../components/Hero";
 import Banner from "../components/Banner";
 
 import {RoomContext} from '../context';
-import {Link, useParams} from "react-router-dom";
-import SingleRoomComp from "../components/SingleRoom"
+import {Link} from "react-router-dom";
 import StyledHero from "../components/StyledHero"
 
 

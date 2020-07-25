@@ -32,7 +32,7 @@ export default function RoomsFilter() {
     } = context
 
     console.log(getUnique(rooms, 'type'))
-    let uniquePrices = getUnique(rooms, 'price')
+    // let uniquePrices = getUnique(rooms, 'price')
 
     const uniqueOptions = () =>{
         let tempArray = rooms.map(item=>item.type)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import logo from "../images/logo.svg";
 import { FaAlignRight } from "react-icons/fa";
@@ -17,15 +17,15 @@ export default class Navbar extends Component {
     }
     render() {
 
-        const closedStyle = {
-            height: 0,
-            overflow: "hidden"
-        };
+        // const closedStyle = {
+        //     height: 0,
+        //     overflow: "hidden"
+        // };
 
-        const openStyle = {
-            height: "auto",
-            overflow:"visible"
-        }
+        // const openStyle = {
+        //     height: "auto",
+        //     overflow:"visible"
+        // }
         return <nav className="navbar">
                 <div className="nav-center">
                     <div className="nav-header">
